@@ -4,7 +4,7 @@ using System.Linq;
 namespace OrderManagement
 {
     //货物
-    class Goods
+    public class Goods
     {
         private int goodsID;
 
@@ -22,5 +22,7 @@ namespace OrderManagement
             }
             this.GoodsID = goodsID;
         }
+
+        public Goods() { }
     }
 }

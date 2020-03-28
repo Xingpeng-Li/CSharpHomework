@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace OrderManagement
 {
     //订单服务类
-    class OrderService
+    public class OrderService
     {
         private int orderIDCounter = 0;
+
         private List<Order> orders;
+        public List<Order> Orders
+        {
+            get => orders;
+            set => orders = value;
+        }
+        public int OrderIDCounter { get => orderIDCounter; set => orderIDCounter = value; }
+
         public OrderService()
         {
             orders = new List<Order>();
-            GoodsDic.AddGoods(1, "Apple", 5);
-            GoodsDic.AddGoods(2, "Orange", 3);
-            GoodsDic.AddGoods(3, "Banana", 4);
-            GoodsDic.AddGoods(4, "Mango", 10);
-            GoodsDic.AddGoods(5, "Pear", 6);
-            GoodsDic.AddGoods(6, "Lemon", 8);
-            GoodsDic.AddGoods(7, "Strawberry", 12);
         }
         public int AddOrder(Order newOrder)
         {
@@ -33,9 +36,9 @@ namespace OrderManagement
                     throw new ArgumentException("Cannot add duplicate order!");
                 }
             }
-            newOrder.OrderID = ++orderIDCounter;
+            newOrder.OrderID = ++OrderIDCounter;
             orders.Add(newOrder);
-            return orderIDCounter;
+            return OrderIDCounter;
         }
         public void DeleteOrder(int orderID)
         {
@@ -117,6 +120,23 @@ namespace OrderManagement
             }
         }
 
+        public void Export(String path)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                xmlSerializer.Serialize(fs, orders);
+            }
+        }
+
+        public void Import(String path)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                orders = (List<Order>)xmlSerializer.Deserialize(fs);
+            }
+        }
 
         //检查data是否为String类，是则返回该String值，否则抛出异常
         private String IsString(object data)

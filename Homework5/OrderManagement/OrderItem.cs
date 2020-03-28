@@ -3,7 +3,7 @@
 namespace OrderManagement
 {
     //订单明细类
-    class OrderItem
+    public class OrderItem
     {
         private Goods thisGoods;
         public Goods ThisGoods { get => thisGoods; set => thisGoods = value; }
@@ -17,6 +17,8 @@ namespace OrderManagement
             this.Quantity = quantity;
         }
 
+        public OrderItem() { }
+
         public override string ToString()
         {
             return $"{ThisGoods.GoodsID}".PadRight(5) + "|" +
@@ -28,12 +30,13 @@ namespace OrderManagement
         public override bool Equals(object obj)
         {
             return obj is OrderItem item &&
-                   ThisGoods.GoodsID == item.ThisGoods.GoodsID;
+                   ThisGoods.GoodsID == item.ThisGoods.GoodsID &&
+                   Quantity == Quantity;
         }
 
         public override int GetHashCode()
         {
-            return ThisGoods.GoodsID;
+            return ThisGoods.GoodsID + Quantity;
         }
     }
 }

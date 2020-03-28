@@ -5,11 +5,11 @@ using System.Text;
 namespace OrderManagement
 {
     //订单类
-    class Order
+    [Serializable]
+    public class Order
     {
         private int orderID;
         public int OrderID { get => orderID; set => orderID = value; }
-
         private Customer customer;
         public Customer Customer { get => customer; set => customer = value; }
 
@@ -25,7 +25,7 @@ namespace OrderManagement
             {
                 foreach(OrderItem orderItem in orderItems)
                 {
-                    if(orderItem.GetHashCode() == goodsID) { return orderItem; }
+                    if(orderItem.ThisGoods.GoodsID == goodsID) { return orderItem; }
                 }
                 throw new ArgumentException("Cannot find such order item!");
             }
@@ -38,6 +38,8 @@ namespace OrderManagement
             this.OrderTime = orderTime;
             this.OrderItems = orderItems;
         }
+
+        public Order() { }
 
         public int TotalQuantity
         {

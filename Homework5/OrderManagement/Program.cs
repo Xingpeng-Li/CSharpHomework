@@ -11,7 +11,10 @@ namespace OrderManagement
         {
             Console.WriteLine("Welcome to Order Management System!");
             OrderService service = new OrderService();
-            while(true)
+            service.Import("orders.xml");
+            service.OrderIDCounter = service.Orders != null && service.Orders.Count > 0
+                ? service.Orders[service.Orders.Count - 1].OrderID : 0;
+            while (true)
             {
                 try
                 {
@@ -92,6 +95,7 @@ namespace OrderManagement
                         default:
                             throw new ArgumentException("No such operation!");
                     }
+                    service.Export("orders.xml");
                 }
                 catch(ArgumentException e)
                 {

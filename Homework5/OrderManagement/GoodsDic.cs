@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagement
 {
-    class GoodsDic
+    public class GoodsDic
     {
         public class GoodItem
         {
@@ -23,7 +23,17 @@ namespace OrderManagement
             public double Price { get => price; set => price = value; }
         }
 
-        public static Dictionary<int, GoodItem> GoodsDictionary = new Dictionary<int, GoodItem>();
+        public static Dictionary<int, GoodItem> GoodsDictionary = new Dictionary<int, GoodItem>
+        {
+            {1,new GoodItem("Apple",5) },
+            {2,new GoodItem("Orange",3) },
+            {3,new GoodItem("Banana",4) },
+            {4,new GoodItem("Mango",10) },
+            {5,new GoodItem("Pear",6) },
+            {6,new GoodItem("Lemon",8) },
+            {7,new GoodItem("Strawberry",12) }
+        };
+       
         public static void AddGoods(int ID,String name,double price)
         {
             if (GoodsDictionary.Keys.Contains(ID))

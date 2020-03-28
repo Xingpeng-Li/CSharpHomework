@@ -3,12 +3,10 @@
 namespace OrderManagement
 {
     //客户类
-    class Customer
+    public class Customer
     {
         private String name;
         private String address;
-
-
         public string Name { get => name; set => name = value; }
         public string Address { get => address; set => address = value; }
 
@@ -18,6 +16,7 @@ namespace OrderManagement
             this.Address = address;
         }
 
+        public Customer() { }
 
         public override string ToString()
         {
