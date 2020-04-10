@@ -19,6 +19,8 @@ namespace OrderManagement
         private HashSet<OrderItem> orderItems = new HashSet<OrderItem>();
         public HashSet<OrderItem> OrderItems { get => orderItems; set => orderItems = value; }
 
+        public List<OrderItem> OrderLists { get => new List<OrderItem>(orderItems); }
+
         public OrderItem this[int goodsID]
         {
             get
