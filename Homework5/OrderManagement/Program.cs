@@ -29,7 +29,7 @@ namespace OrderManagement
                             customerAddress = GetInput("Customer address:");
                             Console.WriteLine("Add an order successful!");
                             Console.WriteLine("Your order ID is:" + service.AddOrder(new Order(0,
-                                new Customer(customerName, customerAddress), DateTime.Now, new HashSet<OrderItem>())));
+                                new Customer(customerName, customerAddress), DateTime.Now, new List<OrderItem>())));
                             break;
                         case "2":
                             orderID = GetInput("Order ID:");

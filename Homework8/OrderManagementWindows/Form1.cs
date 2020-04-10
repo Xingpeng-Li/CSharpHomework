@@ -13,9 +13,11 @@ namespace OrderManagementWindows
 {
     public partial class Form1 : Form
     {
+        OrderService service;
         public Form1()
         {
             InitializeComponent();
+            service = new OrderService();
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
@@ -24,6 +26,11 @@ namespace OrderManagementWindows
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

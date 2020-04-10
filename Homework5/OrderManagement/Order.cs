@@ -16,10 +16,8 @@ namespace OrderManagement
         private DateTime orderTime;
         public DateTime OrderTime { get => orderTime; set => orderTime = value; }
 
-        private HashSet<OrderItem> orderItems = new HashSet<OrderItem>();
-        public HashSet<OrderItem> OrderItems { get => orderItems; set => orderItems = value; }
-
-        public List<OrderItem> OrderLists { get => new List<OrderItem>(orderItems); }
+        private List<OrderItem> orderItems = new List<OrderItem>();
+        public List<OrderItem> OrderItems { get => orderItems; set => orderItems = value; }
 
         public OrderItem this[int goodsID]
         {
@@ -33,7 +31,7 @@ namespace OrderManagement
             }
         }
 
-        public Order(int orderID, Customer customer, DateTime orderTime, HashSet<OrderItem> orderItems)
+        public Order(int orderID, Customer customer, DateTime orderTime, List<OrderItem> orderItems)
         {
             this.OrderID = orderID;
             this.Customer = customer;
