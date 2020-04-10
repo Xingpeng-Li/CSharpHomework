@@ -79,7 +79,7 @@
             this.exportToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Size = new System.Drawing.Size(800, 28);
+            this.mnsMenu.Size = new System.Drawing.Size(956, 28);
             this.mnsMenu.TabIndex = 0;
             this.mnsMenu.Text = "menuStrip1";
             // 
@@ -139,7 +139,7 @@
             this.pnlSearch.Location = new System.Drawing.Point(0, 28);
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.pnlSearch.Size = new System.Drawing.Size(800, 58);
+            this.pnlSearch.Size = new System.Drawing.Size(956, 58);
             this.pnlSearch.TabIndex = 1;
             // 
             // cmbSearch
@@ -151,7 +151,7 @@
             "Order ID",
             "Customer name",
             "Goods name"});
-            this.cmbSearch.Location = new System.Drawing.Point(107, 13);
+            this.cmbSearch.Location = new System.Drawing.Point(185, 13);
             this.cmbSearch.Name = "cmbSearch";
             this.cmbSearch.Size = new System.Drawing.Size(176, 23);
             this.cmbSearch.TabIndex = 0;
@@ -159,7 +159,7 @@
             // tbxSearch
             // 
             this.tbxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbxSearch.Location = new System.Drawing.Point(308, 13);
+            this.tbxSearch.Location = new System.Drawing.Point(386, 13);
             this.tbxSearch.Name = "tbxSearch";
             this.tbxSearch.Size = new System.Drawing.Size(229, 25);
             this.tbxSearch.TabIndex = 1;
@@ -167,7 +167,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSearch.Location = new System.Drawing.Point(558, 12);
+            this.btnSearch.Location = new System.Drawing.Point(636, 12);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 26);
             this.btnSearch.TabIndex = 2;
@@ -187,8 +187,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvItem);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 364);
-            this.splitContainer1.SplitterDistance = 513;
+            this.splitContainer1.Size = new System.Drawing.Size(956, 364);
+            this.splitContainer1.SplitterDistance = 613;
             this.splitContainer1.TabIndex = 2;
             // 
             // dgvOrder
@@ -208,7 +208,7 @@
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.RowHeadersWidth = 51;
             this.dgvOrder.RowTemplate.Height = 27;
-            this.dgvOrder.Size = new System.Drawing.Size(513, 364);
+            this.dgvOrder.Size = new System.Drawing.Size(613, 364);
             this.dgvOrder.TabIndex = 0;
             // 
             // dgvItem
@@ -228,7 +228,7 @@
             this.dgvItem.Name = "dgvItem";
             this.dgvItem.RowHeadersWidth = 51;
             this.dgvItem.RowTemplate.Height = 27;
-            this.dgvItem.Size = new System.Drawing.Size(283, 364);
+            this.dgvItem.Size = new System.Drawing.Size(339, 364);
             this.dgvItem.TabIndex = 0;
             // 
             // orderBindingSource
@@ -339,7 +339,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(956, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pnlSearch);
             this.Controls.Add(this.mnsMenu);
