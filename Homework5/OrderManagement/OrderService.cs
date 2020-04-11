@@ -122,6 +122,7 @@ namespace OrderManagement
 
         public void Export(String path)
         {
+            using (FileStream fs = new FileStream(path, FileMode.Truncate, FileAccess.ReadWrite)) { }
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {

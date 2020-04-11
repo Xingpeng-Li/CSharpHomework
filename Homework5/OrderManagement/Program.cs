@@ -9,6 +9,7 @@ namespace OrderManagement
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Welcome to Order Management System!");
             OrderService service = new OrderService();
             service.Import("orders.xml");
@@ -64,7 +65,7 @@ namespace OrderManagement
                                     data = new OrderItem(new Goods(goodsID), quantity);
                                     break;
                                 case "delete item":
-                                    goodsID = Int32.Parse(GetInput("Quantity:"));
+                                    goodsID = Int32.Parse(GetInput("Goods ID:"));
                                     break;
                                 case "quantity":
                                     goodsID = Int32.Parse(GetInput("Quantity:"));
