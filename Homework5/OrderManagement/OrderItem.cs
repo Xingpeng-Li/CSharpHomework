@@ -6,7 +6,7 @@ namespace OrderManagement
     public class OrderItem
     {
         private Goods thisGoods;
-        internal Goods ThisGoods { get => thisGoods; set => thisGoods = value; }
+        public Goods ThisGoods { get => thisGoods; set => thisGoods = value; }
 
         public int GoodsID { get => thisGoods.GoodsID; }
         public string GoodsName { get => thisGoods.Name; }
