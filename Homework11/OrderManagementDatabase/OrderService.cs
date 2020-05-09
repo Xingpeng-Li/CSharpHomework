@@ -12,7 +12,7 @@ namespace OrderManagementDatabase
         {
             using (var management = new OrderManagement())
             {
-                //若无商品（数据库初始化），添加商品
+                //若无商品（数据库初始化），默认添加商品
                 if(management.GoodsSet.ToList().Count == 0)
                 {
                     management.GoodsSet.Add(new Goods() { Name = "apple", Price = 6.8 });
@@ -21,16 +21,23 @@ namespace OrderManagementDatabase
                     management.GoodsSet.Add(new Goods() { Name = "lemon", Price = 7.8 });
                     management.SaveChanges();
                 }
-                //若无顾客（数据库初始化），添加顾客
-                if (management.Customers.ToList().Count == 0)
-                {
-                    management.Customers.Add(new Customer() { Name = "Jack", Address = "King Street" });
-                    management.Customers.Add(new Customer() { Name = "Mary", Address = "Queen Street" });
-                    management.Customers.Add(new Customer() { Name = "Jane", Address = "King Street" });
-                    management.SaveChanges();
-                }
             }
         }
+        //添加顾客
+        public int AddCustomer(Customer newCustomer)
+        {
+            if (newCustomer == null)
+            {
+                throw new ArgumentException("Cannot add an empty customer!");
+            }
+            using (var management = new OrderManagement())
+            {
+                management.Customers.Add(newCustomer);
+                management.SaveChanges();
+            }
+            return newCustomer.CustomerID;
+        }
+        //添加新订单
         public int AddOrder(Order newOrder)
         {
             if (newOrder == null)
