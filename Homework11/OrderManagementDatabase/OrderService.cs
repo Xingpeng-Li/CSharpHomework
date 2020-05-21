@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,12 @@ namespace OrderManagementDatabase
             using (var management = new OrderManagement())
             {
                 //若无商品（数据库初始化），默认添加商品
-                if(management.GoodsSet.ToList().Count == 0)
+                if(management.GoodsItems.Count(goods => true) == 0)
                 {
-                    management.GoodsSet.Add(new Goods() { Name = "apple", Price = 6.8 });
-                    management.GoodsSet.Add(new Goods() { Name = "bear", Price = 4.8 });
-                    management.GoodsSet.Add(new Goods() { Name = "orange", Price = 2.8 });
-                    management.GoodsSet.Add(new Goods() { Name = "lemon", Price = 7.8 });
+                    management.GoodsItems.Add(new GoodsItem() { Name = "apple", Price = 6.8 });
+                    management.GoodsItems.Add(new GoodsItem() { Name = "bear", Price = 4.8 });
+                    management.GoodsItems.Add(new GoodsItem() { Name = "orange", Price = 2.8 });
+                    management.GoodsItems.Add(new GoodsItem() { Name = "lemon", Price = 7.8 });
                     management.SaveChanges();
                 }
             }
@@ -35,7 +36,7 @@ namespace OrderManagementDatabase
                 management.Customers.Add(newCustomer);
                 management.SaveChanges();
             }
-            return newCustomer.CustomerID;
+            return newCustomer.ID;
         }
         //添加新订单
         public int AddOrder(Order newOrder)
@@ -49,13 +50,13 @@ namespace OrderManagementDatabase
                 management.Orders.Add(newOrder);
                 management.SaveChanges();
             }
-            return newOrder.OrderID;
+            return newOrder.ID;
         }
         public void DeleteOrder(int orderID)
         {
             using (var management = new OrderManagement())
             {
-                var order = management.Orders.Include("OrderItems").FirstOrDefault(o => o.OrderID == orderID);
+                var order = management.Orders.Include("OrderItems").FirstOrDefault(o => o.ID == orderID);
                 if (order != null)
                 {
                     management.Orders.Remove(order);
@@ -73,7 +74,7 @@ namespace OrderManagementDatabase
         {
             using (var management = new OrderManagement())
             {
-                var order = management.Orders.Include("OrderItems").FirstOrDefault(o => o.OrderID == orderID);
+                var order = management.Orders.Include("OrderItems").FirstOrDefault(o => o.ID == orderID);
                 if (order != null)
                 {
                     switch (alterType)
@@ -82,10 +83,10 @@ namespace OrderManagementDatabase
                         case "order time": order.OrderTime = IsDateTime(alterData); break;
                         case "add item": order.OrderItems.Add(isOrderItem(alterData)); break;
                         case "delete item": order.OrderItems.Remove(order.OrderItems.FirstOrDefault(
-                            i => i.OrderItemID == orderItemID)); break;
+                            i => i.ID == orderItemID)); break;
                         case "quantity":
                             order.OrderItems.FirstOrDefault(
-                                i => i.OrderItemID == orderItemID).Quantity = IsInt(alterData); break;
+                                i => i.ID == orderItemID).Quantity = IsInt(alterData); break;
                         default: throw new ArgumentException("No such operation!");
                     }
                     management.SaveChanges();
@@ -97,7 +98,8 @@ namespace OrderManagementDatabase
         {
             using (var management = new OrderManagement())
             {
-                var query = management.Orders.Include("OrderItems").Where(order => orderID == int.MinValue || order.OrderID == orderID).OrderBy(order => order.OrderID);
+                var query = management.Orders.Include(o => o.OrderItems.Select(i => i.GoodsItem))
+                .Include("Customer").Where(order => orderID == int.MinValue || order.ID == orderID).OrderBy(order => order.ID);
                 return query.ToList();
             }
         }

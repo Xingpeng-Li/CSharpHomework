@@ -12,7 +12,8 @@
         }
 
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Goods> GoodsSet { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<GoodsItem> GoodsItems { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
     }
 }

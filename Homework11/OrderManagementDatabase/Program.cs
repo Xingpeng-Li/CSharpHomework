@@ -16,7 +16,7 @@ namespace OrderManagementDatabase
             {
                 //获得用户ID
                 int customerID = 0;
-                String regOrSign = GetInput("1.register 2.sign in");
+                String regOrSign = GetInput("1.register 2.sign in\n");
                 switch(regOrSign)
                 {
                     //注册
@@ -40,6 +40,7 @@ namespace OrderManagementDatabase
                             //添加一个订单
                             Console.WriteLine("Add an order successful!");
                             Console.WriteLine("Your order ID is:" + service.AddOrder(new Order() { CustomerID = customerID, OrderTime = DateTime.Now }));
+
                                 break;
                         case "2":
                             //删除订单
@@ -69,7 +70,7 @@ namespace OrderManagementDatabase
                                 case "add item":
                                     goodsID = Int32.Parse(GetInput("Goods ID:"));
                                     int quantity = Int32.Parse(GetInput("Quantity:"));
-                                    data = new OrderItem() { GoodsID = goodsID, OrderID = orderID, Quantity = quantity };
+                                    data = new OrderItem() { GoodsItemID = goodsID, OrderID = orderID, Quantity = quantity };
                                     break;
                                 case "delete item":
                                     goodsID = Int32.Parse(GetInput("Goods ID:"));
@@ -89,7 +90,10 @@ namespace OrderManagementDatabase
                             int orderId = orderID_str == "" ? int.MinValue : int.Parse(orderID_str);
                             List<Order> results = service.FindOrder(orderId);
                             Console.WriteLine("Result:");
-                            Console.WriteLine($"CustomerID:{results[0].CustomerID}\nTotal price:{results[0].TotalPrice}");
+                            foreach (Order order in results)
+                            {
+                                Console.WriteLine(order);
+                            }
                             break;
                         default:
                             throw new ArgumentException("No such operation!");
